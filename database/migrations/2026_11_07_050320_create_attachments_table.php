@@ -16,6 +16,10 @@ return new class extends Migration {
             $table->foreignId('uploaded_by_id')->constrained('users');
             $table->string('title')->nullable();
             $table->text('description')->nullable();
+            $table->string('file_name');
+            $table->string('file_path');
+            $table->string('mime_type');
+            $table->integer('file_size');
             $table->timestamps();
         });
     }
