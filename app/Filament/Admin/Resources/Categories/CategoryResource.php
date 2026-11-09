@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Filament\Resources\Categories;
+namespace App\Filament\Admin\Resources\Categories;
 
-use App\Filament\Resources\Categories\Pages\ManageCategories;
+use App\Filament\Admin\Resources\Categories\Pages\ManageCategories;
 use App\Models\Category;
 use BackedEnum;
 use Filament\Actions\BulkActionGroup;

@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Filament\Resources\Users\Schemas;
+namespace App\Filament\Admin\Resources\Users\Schemas;
 
+use App\UserRole;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
@@ -20,16 +21,13 @@ class UserForm
                     ->email()
                     ->required(),
                 Select::make('role')
-                    ->options([
-                        'reporter' => 'Reporter',
-                        'security_officer' => 'Security Officer',
-                        'administrator' => 'Administrator',
-                    ])
+                    ->options(UserRole::class)
                     ->required(),
                 DateTimePicker::make('email_verified_at'),
                 TextInput::make('password')
                     ->password()
-                    ->required(),
+                    ->required()
+                    ->hiddenOn('view'),
             ]);
     }
 }
