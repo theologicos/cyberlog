@@ -2,9 +2,11 @@
 
 namespace App\Filament\Admin\Resources\Incidents\Schemas;
 
+use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Select;
-use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
 
 class IncidentForm
@@ -22,26 +24,22 @@ class IncidentForm
                     ->relationship('category', 'title')
                     ->default(null),
                 Select::make('severity')
-                    ->options(['low' => 'Low', 'medium' => 'Medium', 'high' => 'High', 'critical' => 'Critical'])
-                    ->required(),
-                Select::make('status')
                     ->options([
-            'open' => 'Open',
-            'assigned' => 'Assigned',
-            'investigating' => 'Investigating',
-            'resolved' => 'Resolved',
-            'closed' => 'Closed',
-        ])
+                        'low' => 'Low',
+                        'medium' => 'Medium',
+                        'high' => 'High',
+                        'critical' => 'Critical',
+                    ])
                     ->required(),
-                TextInput::make('reported_by_id')
-                    ->required()
-                    ->numeric(),
-                TextInput::make('assigned_by_id')
-                    ->numeric()
-                    ->default(null),
-                TextInput::make('assigned_to_id')
-                    ->numeric()
-                    ->default(null),
+                Repeater::make('attachments')->relationship()->schema([
+                    FileUpload::make('file_path')
+                        ->required()
+                        ->disk('local')
+                        ->directory('incident-attachments')
+                        ->storeFileNamesIn('file_name')
+                        ->openable()
+                        ->downloadable(),
+                ])->addActionLabel('Add attachment'),
             ]);
     }
 }
