@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "79d9cdb014744dd6aeede821a2829f89",
+    "content-hash": "5a73efd61f8d2aaf691ad1370adeb7bd",
     "packages": [
         {
             "name": "anourvalar/eloquent-serialize",
@@ -4222,6 +4222,71 @@
                 "source": "https://github.com/paragonie/constant_time_encoding"
             },
             "time": "2026-11-06T20:31:19+00:00"
+        },
+        {
+            "name": "phpcolor/phpcolor",
+            "version": "v1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/phpcolor/phpcolor.git",
+                "reference": "1e42fbe4a8c818d58392ea2bfa1bbdeb346d5be4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/phpcolor/phpcolor/zipball/1e42fbe4a8c818d58392ea2bfa1bbdeb346d5be4",
+                "reference": "1e42fbe4a8c818d58392ea2bfa1bbdeb346d5be4",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.3"
+            },
+            "require-dev": {
+                "phpstan/phpstan": "^2.1",
+                "phpunit/phpunit": "^12.5"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "src/Support/functions.php"
+                ],
+                "psr-4": {
+                    "PhpColor\\Color\\": "src/"
+                },
+                "exclude-from-classmap": [
+                    "tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Simon André",
+                    "email": "smn.andre@gmail.com"
+                },
+                {
+                    "name": "Raphaël Geffroy",
+                    "email": "raphael@geffroy.dev"
+                }
+            ],
+            "description": "PHP Color",
+            "homepage": "https://phpcolor.dev",
+            "keywords": [
+                "color",
+                "php"
+            ],
+            "support": {
+                "issues": "https://github.com/phpcolor/phpcolor/issues",
+                "source": "https://github.com/phpcolor/phpcolor/"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/sponsors/smnandre",
+                    "type": "github"
+                }
+            ],
+            "time": "2026-09-19T20:05:04+00:00"
         },
         {
             "name": "phpoption/phpoption",
