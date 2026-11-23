@@ -9,8 +9,18 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Override;
 
-#[Fillable(['title', 'description', 'category_id', 'severity', 'status', 'assigned_by_id', 'assigned_to_id'])]
+#[Fillable([
+    'title',
+    'description',
+    'category_id',
+    'severity',
+    'status',
+    'reported_by_id',
+    'assigned_by_id',
+    'assigned_to_id',
+])]
 class Incident extends Model
 {
     use HasFactory;
@@ -21,6 +31,17 @@ class Incident extends Model
             'severity' => IncidentSeverity::class,
             'status' => IncidentStatus::class,
         ];
+    }
+
+    #[Override]
+    protected static function booted()
+    {
+        static::creating(function (Incident $incident) {
+            $incident->reported_by_id = auth()->id();
+            $incident->status = IncidentStatus::Open;
+            $incident->assigned_by_id = null;
+            $incident->assigned_to_id = null;
+        });
     }
 
     public function reporter(): BelongsTo
