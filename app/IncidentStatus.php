@@ -3,6 +3,8 @@
 namespace App;
 
 use Filament\Support\Contracts\HasColor;
+use Filament\Support\Facades\FilamentColor;
+use PhpColor\Color\Color;
 
 enum IncidentStatus: string implements HasColor
 {
@@ -21,5 +23,15 @@ enum IncidentStatus: string implements HasColor
             self::Resolved => 'success',
             self::Closed => 'gray',
         };
+    }
+
+    public function getChartColor(): string
+    {
+        $color = $this->getColor();
+
+        $unconverted = FilamentColor::getColors()[$color][500];
+        $rgb = Color::parse($unconverted)->toSrgb()->toCss();
+
+        return $rgb;
     }
 }
